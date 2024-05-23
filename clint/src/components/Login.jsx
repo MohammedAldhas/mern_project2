@@ -11,11 +11,12 @@ export default function Login({ users }) {
     const user = users.filter((e) => {
       return e.email == email && e.password == password;
     });
-    // console.log(users);
+    console.log(users);
     if (user.length !== 0) {
       localStorage.setItem("name", user[0].name);
+      localStorage.setItem("admin", user[0].admin);
       if (user[0].admin) {
-        nav("/");
+        nav("/admin");
       } else {
         nav("/");
       }

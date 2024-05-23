@@ -20,7 +20,7 @@ export default function Sign() {
         mobileNumber: user.mobileNumber,
         email: user.email,
         password: user.password,
-        admin: false,
+        admin: true,
       })
       .then(navigate("/login"))
       .catch((err) => console.log(err));

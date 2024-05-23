@@ -28,7 +28,7 @@ export default function Admin({ users }) {
 
   const ss = useRef();
 
-  if (!localStorage.getItem("name")) {
+  if (!localStorage.getItem("name") && !localStorage.getItem("admin")) {
     // window.location.href("/login");
     location.href = "/login";
   }
@@ -85,7 +85,7 @@ export default function Admin({ users }) {
         ref={ss}
         // onClick={() => ss.current.classList.replace("block", "hidden")}
       >
-        <Ubdate allUser={user} iD={iD} ss={ss} />
+        <Ubdate userData={user} iD={iD} ss={ss} allUser={users} />
       </div>
       {loading ? (
         <div className="w-[20%] h-[20%] shadow rounded-xl bg-[#7F265B] flex justify-center items-center">
@@ -106,7 +106,7 @@ export default function Admin({ users }) {
         </div>
       ) : (
         <>
-          <TopNav />
+          <TopNav role={"Admin"} />
           <div className="w-[80%] h-[70%] p-3 flex flex-col justify-evenly items-center bg-white shadow rounded-xl">
             <div
               className="shadow p-2 bg-[#7F265B] rounded-lg flex flex-col items-center w-full gap-2

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function TopNav() {
+export default function TopNav({ role }) {
   const [clicked, setclicked] = useState(false);
   return (
     <nav className="absolute top-0 w-full h-14 flex justify-center">
@@ -20,7 +20,9 @@ export default function TopNav() {
           </Link>
           <div className="w-8 h-8 absolute bg-transparent right-[20px] top-[-32px] border-[16px] border-t-transparent border-l-transparent border-r-transparent border-b-[#7F265B]"></div>
         </div>
-        <h2 className="font-bold text-xl justify-self-center">Welcome Admin</h2>
+        <h2 className="font-bold text-xl justify-self-center">
+          Welcome {role}
+        </h2>
         <h2
           className="font-bold text-xl cursor-pointer"
           onClick={() => {
