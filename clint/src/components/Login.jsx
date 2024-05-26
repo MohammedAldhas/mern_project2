@@ -1,17 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Login({ users }) {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [err, seterr] = useState(false);
+  const [btn, setbtn] = useState(false);
   const nav = useNavigate();
+
+  useEffect(() => {
+    seterr(false);
+
+    if (email == "" || password == "") {
+      setbtn(true);
+    } else setbtn(false);
+  }, [email, password]);
   const submithandle = (e) => {
     e.preventDefault();
+
     const user = users.filter((e) => {
       return e.email == email && e.password == password;
     });
-    console.log(users);
+
     if (user.length !== 0) {
       localStorage.setItem("name", user[0].name);
       localStorage.setItem("admin", user[0].admin);
@@ -20,9 +30,7 @@ export default function Login({ users }) {
       } else {
         nav("/");
       }
-    } else {
-      seterr(true);
-    }
+    } else seterr(true);
   };
   return (
     <div className="w-full h-screen flex justify-center items-center bg-[#FFE6C9]  text-[#7F265B] font-bold">
@@ -87,7 +95,10 @@ export default function Login({ users }) {
               </div>
               <div className="flex flex-col gap-1">
                 <input
-                  className="w-full bg-[#7F265B]  text-white rounded-md h-9 hover:bg-[#7f265bc7] cursor-pointer"
+                  className={`w-full bg-[#7F265B] text-white rounded-md h-9 hover:bg-[#7f265bc7] cursor-pointer ${
+                    btn &&
+                    "cursor-not-allowed bg-[#7f265b89] hover:bg-[#7f265b89]"
+                  } `}
                   value={"Login"}
                   type="submit"
                 />

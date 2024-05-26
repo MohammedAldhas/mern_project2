@@ -9,18 +9,10 @@ function Ubdate({ userData, iD, ss, allUser }) {
   }, [userData]);
 
   function ubdate() {
-    const user = allUser.filter((u) => {
-      return u.mobileNumber == users.mobileNumber;
-    });
-    console.log(user);
-    if (user.length > 0) {
-      seterr("mobile Number is already exist");
-    } else {
-      ss.current.classList.replace("block", "hidden");
-      axios
-        .put(`http://localhost:3005/${iD}`, users)
-        .then((res) => console.log(res));
-    }
+    ss.current.classList.replace("block", "hidden");
+    axios
+      .put(`http://localhost:3005/${iD}`, users)
+      .then(window.location.reload());
   }
   return (
     <div className="w-[40%] h-[35%] bg-white shadow rounded-lg absolute top-2/4 left-2/4 -translate-x-[50%] -translate-y-[50%] flex justify-center items-center ">

@@ -16,12 +16,12 @@ export default function App() {
         setUsers(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [users]);
   return (
     <>
       <Routes>
         <Route path="/login" element={<Login users={users}></Login>}></Route>
-        <Route path="/sign" element={<Sign></Sign>}></Route>
+        <Route path="/sign" element={<Sign users={users}></Sign>}></Route>
         <Route path="/admin" element={<Admin users={users}></Admin>}></Route>
         <Route path="/" element={<User />}></Route>
       </Routes>

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import DotLoader from "react-spinners/DotLoader";
 
-export default function Sign() {
+export default function Sign({ users }) {
   const navigate = useNavigate();
   const [user, setUser] = useState({
     name: "",
@@ -11,10 +11,46 @@ export default function Sign() {
     password: "",
     mobileNumber: "",
   });
-  const [loading, setloading] = useState(true);
-  const sendToDB = async (e) => {
+
+  const [errM, seterrM] = useState("");
+  const [btn, setbtn] = useState(false);
+  const [loading, setloading] = useState(false);
+
+  let checkInputs =
+    user.email == "" ||
+    user.name == "" ||
+    user.mobileNumber == "" ||
+    user.password == "";
+
+  useEffect(() => {
+    const checkDB = users.some((t) => {
+      return t.email === user.email || t.mobileNumber === user.mobileNumber;
+    });
+    const checkNumbers = user.mobileNumber.split("").some((index) => {
+      return isNaN(index);
+    });
+
+    if (checkInputs) {
+      seterrM("please fill all feilds");
+      setbtn(false);
+    } else if (user.mobileNumber.length != 10 || checkNumbers) {
+      seterrM("mobile number is invalid");
+      setbtn(false);
+    } else if (checkDB) {
+      seterrM("email or mobile number is alredy exist");
+      setbtn(false);
+    } else {
+      seterrM("");
+      setbtn(true);
+    }
+  }, [user]);
+  const sendToDB = (e) => {
     e.preventDefault();
-    await axios
+
+    if (!btn) {
+      return;
+    }
+    axios
       .post("http://localhost:3005/create", {
         name: user.name,
         mobileNumber: user.mobileNumber,
@@ -22,12 +58,16 @@ export default function Sign() {
         password: user.password,
         admin: true,
       })
-      .then(navigate("/login"))
+      .then(() => {
+        setloading(true);
+        setTimeout(() => {
+          setloading(false);
+          navigate("/login");
+        }, 2000);
+      })
+
       .catch((err) => console.log(err));
   };
-  setTimeout(() => {
-    setloading(false);
-  }, 2000);
 
   return loading ? (
     <DotLoader
@@ -119,8 +159,18 @@ export default function Sign() {
                 </div>
               </div>
               <div className="flex flex-col gap-1">
+                <p
+                  className={
+                    errM ? "text-sm text-red-500 opacity-70 w-full" : "hidden"
+                  }
+                >
+                  {errM}
+                </p>
                 <input
-                  className="w-full bg-[#7F265B]  text-white rounded-md h-9 hover:bg-[#7f265bc7] cursor-pointer"
+                  className={`w-full bg-[#7F265B]  text-white rounded-md h-9 hover:bg-[#7f265bc7] cursor-pointer ${
+                    !btn &&
+                    "bg-[#7f265b65] cursor-not-allowed hover:bg-[#7f265b65]"
+                  }`}
                   value={"Sign-in"}
                   type="submit"
                 />
