@@ -56,7 +56,7 @@ export default function Sign({ users }) {
         mobileNumber: user.mobileNumber,
         email: user.email,
         password: user.password,
-        admin: true,
+        admin: false,
       })
       .then(() => {
         setloading(true);
