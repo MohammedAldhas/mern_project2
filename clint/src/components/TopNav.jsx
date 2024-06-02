@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+// eslint-disable-next-line react/prop-types
 export default function TopNav({ role }) {
   const [clicked, setclicked] = useState(false);
   return (
@@ -29,7 +30,9 @@ export default function TopNav({ role }) {
             clicked ? setclicked(false) : setclicked(true);
           }}
         >
-          {localStorage.getItem("name")}
+          {role == "Admin"
+            ? localStorage.getItem("adminNme")
+            : localStorage.getItem("name")}
         </h2>
       </ul>
     </nav>

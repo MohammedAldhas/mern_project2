@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 
 import axios from "axios";
+// eslint-disable-next-line react/prop-types, no-unused-vars
 function Ubdate({ userData, iD, ss, allUser }) {
   const [users, setUsers] = useState([]);
   const [err, seterr] = useState("");

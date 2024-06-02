@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import axios from "axios";
 
@@ -5,7 +6,7 @@ function CreateTask({ reff, click }) {
   const [title, setTitle] = useState("");
   const [discription, setDiscription] = useState("");
 
-  const sendToDB = (e) => {
+  const sendToDB = () => {
     axios
       .post("http://localhost:3006/create", {
         userId: localStorage.getItem("name"),

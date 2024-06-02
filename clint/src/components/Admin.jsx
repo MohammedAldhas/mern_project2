@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import DotLoader from "react-spinners/DotLoader";
 import Ubdate from "./Ubdate";
 import Pagination from "@mui/material/Pagination";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import TopNav from "./TopNav";
 export default function Admin({ users }) {
   //   const [users, setUsers] = useState([]);
@@ -11,7 +13,7 @@ export default function Admin({ users }) {
   const [loading, setloading] = useState(true);
   const [search, setsearch] = useState("");
   const [iD, setID] = useState("");
-  const [pageSize, setpageSize] = useState(6);
+  const [pageSize] = useState(6);
   //   let  = 3;
   const [pagination, setPagination] = useState({
     count: 1,
@@ -27,8 +29,9 @@ export default function Admin({ users }) {
   });
 
   const ss = useRef();
+  const nav = useNavigate();
 
-  if (!localStorage.getItem("name") && !localStorage.getItem("admin")) {
+  if (!localStorage.getItem("adminNme") && !localStorage.getItem("admin")) {
     // window.location.href("/login");
     location.href = "/login";
   }
@@ -142,7 +145,14 @@ export default function Admin({ users }) {
                 <tbody>
                   {filteredUsers?.map((user) => {
                     return (
-                      <tr key={user._id} className="relative">
+                      <tr
+                        key={user._id}
+                        className="relative"
+                        onClick={() => {
+                          localStorage.setItem("name", user.name);
+                          nav("/");
+                        }}
+                      >
                         <td className="border-t ">{user._id}</td>
                         <td className="border ">{user.name}</td>
                         <td className="border ">{user.mobileNumber}</td>

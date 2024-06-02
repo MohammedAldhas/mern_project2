@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -24,6 +25,7 @@ export default function Login({ users }) {
 
     if (user.length !== 0) {
       localStorage.setItem("name", user[0].name);
+      localStorage.setItem("adminNme", user[0].name);
       localStorage.setItem("admin", user[0].admin);
       if (user[0].admin) {
         nav("/admin");
