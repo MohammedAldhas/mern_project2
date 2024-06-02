@@ -23,6 +23,7 @@ export default function Sign({ users }) {
     user.password == "";
 
   useEffect(() => {
+    seterrM("");
     const checkDB = users.some((t) => {
       return t.email === user.email || t.mobileNumber === user.mobileNumber;
     });
@@ -31,7 +32,6 @@ export default function Sign({ users }) {
     });
 
     if (checkInputs) {
-      seterrM("please fill all feilds");
       setbtn(false);
     } else if (user.mobileNumber.length != 10 || checkNumbers) {
       seterrM("mobile number is invalid");
@@ -46,6 +46,7 @@ export default function Sign({ users }) {
   }, [user]);
   const sendToDB = (e) => {
     e.preventDefault();
+    seterrM("please fill all feilds");
 
     if (!btn) {
       return;

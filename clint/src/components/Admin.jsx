@@ -11,7 +11,7 @@ export default function Admin({ users }) {
   const [loading, setloading] = useState(true);
   const [search, setsearch] = useState("");
   const [iD, setID] = useState("");
-  const [pageSize, setpageSize] = useState(4);
+  const [pageSize, setpageSize] = useState(6);
   //   let  = 3;
   const [pagination, setPagination] = useState({
     count: 1,
