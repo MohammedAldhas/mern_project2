@@ -53,14 +53,15 @@ export default function Sign({ users }) {
       return;
     }
     axios
-      .post("http://localhost:3005/create", {
+      .post("http://localhost:3000/users", {
         name: user.name,
         mobileNumber: user.mobileNumber,
         email: user.email,
         password: user.password,
         admin: false,
       })
-      .then(() => {
+      .then((res) => {
+        console.log(res);
         setloading(true);
         setTimeout(() => {
           setloading(false);

@@ -1,5 +1,5 @@
-const express = require("express");
 const cors = require("cors");
+const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 app.use(express.json());
@@ -11,14 +11,14 @@ const PORT = 3005;
 const Users = require("./models/Users");
 
 //add  //..//
-app.post("/create", async (req, res) => {
+app.post("/users", async (req, res) => {
   await Users.create(req.body)
     .then((resu) => res.json(resu))
     .catch((err) => res.json(err));
 });
 
 //ubdate
-app.put("/:id", async (req, res) => {
+app.put("/users:id", async (req, res) => {
   const id = req.params.id;
   await Users.findByIdAndUpdate(id, {
     name: req.body.name,
@@ -31,14 +31,14 @@ app.put("/:id", async (req, res) => {
     .catch((err) => res.json(err));
 });
 // get
-app.get("/", async (req, res) => {
+app.get("/users", async (req, res) => {
   await Users.find()
     .then((resu) => res.json(resu))
     .catch((err) => res.json(err));
 });
 
 //Delete //...//
-app.delete("/:id", async (req, res) => {
+app.delete("/users:id", async (req, res) => {
   const id = req.params.id;
   await Users.findByIdAndDelete(id)
 

@@ -9,7 +9,7 @@ function User() {
   const [tasks, setTasks] = useState([]);
   const [search, setSearch] = useState("");
   useEffect(() => {
-    axios.get("http://localhost:3006/").then((res) => {
+    axios.get("http://localhost:3000/tasks").then((res) => {
       setTasks(
         res.data.filter((e) => {
           return e.userId == localStorage.getItem("name");

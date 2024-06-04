@@ -67,7 +67,7 @@ export default function Admin({ users }) {
   function deleteUser(id) {
     setloading(true);
     axios
-      .delete(`http://localhost:3005/${id}`)
+      .delete(`http://localhost:3000/users${id}`)
       .then(() => {
         console.log("deletes");
       })
@@ -145,14 +145,7 @@ export default function Admin({ users }) {
                 <tbody>
                   {filteredUsers?.map((user) => {
                     return (
-                      <tr
-                        key={user._id}
-                        className="relative"
-                        onClick={() => {
-                          localStorage.setItem("name", user.name);
-                          nav("/");
-                        }}
-                      >
+                      <tr key={user._id} className="relative">
                         <td className="border-t ">{user._id}</td>
                         <td className="border ">{user.name}</td>
                         <td className="border ">{user.mobileNumber}</td>
@@ -173,6 +166,15 @@ export default function Admin({ users }) {
                             onClick={() => showUbdate(user)}
                           >
                             Ubdate
+                          </button>
+                          <button
+                            className="bg-blue-500  hover:bg-blue-400 text-white rounded-2xl text-sm font-bold m-2 p-1 "
+                            onClick={() => {
+                              localStorage.setItem("name", user.name);
+                              nav("/");
+                            }}
+                          >
+                            Show
                           </button>
                         </td>
                       </tr>

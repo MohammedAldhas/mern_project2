@@ -4,6 +4,7 @@ const app = express();
 const mongoose = require("mongoose");
 app.use(express.json());
 app.use(cors());
+
 const userName = "m7md51177",
   pass = "%40m7md51177%40";
 const PORT = 3006;
@@ -11,14 +12,14 @@ const PORT = 3006;
 const Tasks = require("./models/Tasks");
 
 //add  //..//
-app.post("/create", async (req, res) => {
+app.post("/tasks", async (req, res) => {
   await Tasks.create(req.body)
     .then((resu) => res.json(resu))
     .catch((err) => res.json(err));
 });
 
 //ubdate
-app.put("/:id", async (req, res) => {
+app.put("/tasks:id", async (req, res) => {
   const id = req.params.id;
   await Tasks.findByIdAndUpdate(id, {
     name: req.body.name,
@@ -31,14 +32,14 @@ app.put("/:id", async (req, res) => {
     .catch((err) => res.json(err));
 });
 // get
-app.get("/", async (req, res) => {
+app.get("/tasks", async (req, res) => {
   await Tasks.find()
     .then((resu) => res.json(resu))
     .catch((err) => res.json(err));
 });
 
 //Delete //...//
-app.delete("/:id", async (req, res) => {
+app.delete("/tasks:id", async (req, res) => {
   const id = req.params.id;
   await Tasks.findByIdAndDelete(id)
 

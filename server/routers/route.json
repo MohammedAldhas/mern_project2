@@ -1,0 +1,16 @@
+{
+  "services": {
+    "users": {
+      "apiName": "users",
+      "host": "http://localhost",
+      "port": 3005,
+      "url": "http://localhost:3005/"
+    },
+    "tasks": {
+      "apiName": "tasks",
+      "host": "http://localhost",
+      "port": 3006,
+      "url": "http://localhost:3006/"
+    }
+  }
+}

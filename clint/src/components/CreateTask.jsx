@@ -8,7 +8,7 @@ function CreateTask({ reff, click }) {
 
   const sendToDB = () => {
     axios
-      .post("http://localhost:3006/create", {
+      .post("http://localhost:3000/tasks", {
         userId: localStorage.getItem("name"),
         tasks: {
           title,

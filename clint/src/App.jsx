@@ -11,12 +11,14 @@ export default function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3005")
+      .get("http://localhost:3000/users")
       .then((res) => {
+        console.log(res);
         setUsers(res.data);
+        console.log(res.data);
       })
       .catch((err) => console.log(err));
-  }, [users]);
+  }, []);
   return (
     <>
       <Routes>

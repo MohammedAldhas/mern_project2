@@ -13,7 +13,7 @@ function Ubdate({ userData, iD, ss, allUser }) {
   function ubdate() {
     ss.current.classList.replace("block", "hidden");
     axios
-      .put(`http://localhost:3005/${iD}`, users)
+      .put(`http://localhost:3000/users${iD}`, users)
       .then(window.location.reload());
   }
   return (
