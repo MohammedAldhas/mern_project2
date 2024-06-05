@@ -1,6 +1,6 @@
-import TopNav from "./TopNav";
+import TopNav from "../components/TopNav";
 import { useEffect, useRef, useState } from "react";
-import CreateTask from "./CreateTask";
+import CreateTask from "../components/CreateTask";
 import axios from "axios";
 
 function User() {

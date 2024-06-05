@@ -3,10 +3,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import DotLoader from "react-spinners/DotLoader";
-import Ubdate from "./Ubdate";
+import Ubdate from "../components/Ubdate";
 import Pagination from "@mui/material/Pagination";
 // import { Link } from "react-router-dom";
-import TopNav from "./TopNav";
+import TopNav from "../components/TopNav";
 export default function Admin({ users }) {
   //   const [users, setUsers] = useState([]);
   const [pageusers, setPageUsers] = useState([]);

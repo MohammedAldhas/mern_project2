@@ -1,7 +1,7 @@
-import Login from "./components/Login";
-import Admin from "./components/Admin";
-import Sign from "./components/Sign";
-import User from "./components/User";
+import Login from "./pages/Login";
+import Admin from "./pages/Admin";
+import Sign from "./pages/Sign";
+import User from "./pages/User";
 import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
